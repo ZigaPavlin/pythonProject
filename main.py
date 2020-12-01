@@ -12,37 +12,37 @@ def pivot_array(array, pivot):
 
 def binary_search(array, findme):
     print('input a sorted array')
-    n2 = len(array)
+    n2 = len(array)-1
     n0 = 0
     n1 = int((n2 + n0) / 2)
 
     while (n2 - n0) > 1:
-        print(n2, n1)
+        print(n2, n1, n0)
         if findme == array[n1]:
             return True, n1
         elif findme > array[n1]:
             n2 = n2
             n0 = n1
-            n1 = int((n2 + n0 - 1) / 2)
+            n1 = int((n2 + n0) / 2)
         else:
             n2 = n1
             n0 = n0
-            n1 = int((n2 + n0 + 1) / 2)
+            n1 = int((n2 + n0) / 2)
+
+    if findme == array[n2]:
+        return True, n2
+
+    if findme == array[n0]:
+        return True, n0
 
     return False, -1
 
 
 if __name__ == '__main__':
     arr = [0, 1, 2, 3, 4, 5, 19, 39, 199, 123]
-    arr2 = pivot_array(arr, 3)
-    print(arr)
-    print(arr2)
+    arr.sort()
 
-    find = 1
+    find = 199
     print(binary_search(arr, find))
 
-    if arr[binary_search(arr, find)[0]]:
-        print(arr[binary_search(arr, find)[1]])
 
-    for i in range(len(arr)):
-        print(i, arr, pivot_array(arr, i))
